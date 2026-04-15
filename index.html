@@ -1,1 +1,1197 @@
-1
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="North Star Rising presents Frozen in Carbide — a 26,000-year cosmic journey through science, humanity, and mystery. Release: May 15, 2026.">
+  <meta name="theme-color" content="#06060b">
+  <meta property="og:title" content="North Star Rising — Frozen in Carbide">
+  <meta property="og:description" content="The north does not belong to the brightest star. It belongs to the one that knows the way.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/northstarrisingofficial-cell/FIC/refs/heads/main/Mockup_CarbideSoldiers_CoverArt.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>North Star Rising — Frozen in Carbide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            void: '#06060b',
+            abyss: '#0a0a12',
+            charcoal: '#0d1117',
+            slate: '#151b26',
+            'cold-blue': '#1a2e4a',
+            ice: '#4a90d9',
+            'ice-light': '#7ab8f5',
+            ember: '#ff4d00',
+            'ember-deep': '#cc3d00',
+            'ember-glow': '#ff6a2a',
+            steel: '#e2e5ea',
+            ghost: '#8891a0',
+            'ghost-dim': '#6b7585',
+            'ghost-faint': '#4e5565',
+            purple: { 400: '#a78bfa', 300: '#c4b5fd' },
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            cormorant: ['Cormorant Garamond', 'serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+    body { background: #06060b; color: #e2e5ea; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    .skip-link {
+      position: absolute; top: -100%; left: 16px; z-index: 99999;
+      padding: 8px 16px; background: #ff4d00; color: white; font-size: 12px;
+      border-radius: 4px; text-decoration: none; font-weight: 500;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 16px; }
+
+    *:focus-visible {
+      outline: 2px solid #ff4d00;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .star {
+      position: absolute; border-radius: 50%; background: white;
+      will-change: opacity;
+      animation: twinkle var(--dur) ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { opacity: var(--min-o); }
+      100% { opacity: var(--max-o); }
+    }
+
+    .lightning-layer {
+      position: absolute; inset: 0; pointer-events: none; z-index: 5;
+      mix-blend-mode: screen;
+    }
+    .lightning-bolt { opacity: 0; }
+    .bolt-a { animation: boltFlash 9s ease-in-out infinite; }
+    .bolt-b { animation: boltFlash 13s ease-in-out infinite 3.5s; }
+    .bolt-c { animation: boltFlash 16s ease-in-out infinite 7s; }
+    @keyframes boltFlash {
+      0%, 90%, 100% { opacity: 0; }
+      91% { opacity: 0.95; } 92% { opacity: 0.05; }
+      93% { opacity: 0.75; } 94.5% { opacity: 0; }
+    }
+    .sky-flash { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+    .sky-flash-a {
+      background: radial-gradient(ellipse at 25% 15%, rgba(160,190,255,0.12) 0%, transparent 55%);
+      animation: skyA 9s ease-in-out infinite;
+    }
+    .sky-flash-b {
+      background: radial-gradient(ellipse at 72% 10%, rgba(160,190,255,0.08) 0%, transparent 45%);
+      animation: skyB 13s ease-in-out infinite 3.5s;
+    }
+    @keyframes skyA {
+      0%, 90%, 100% { opacity: 0; }
+      91% { opacity: 1; } 92% { opacity: 0; } 93% { opacity: 0.5; } 94.5% { opacity: 0; }
+    }
+    @keyframes skyB {
+      0%, 90%, 100% { opacity: 0; }
+      91% { opacity: 1; } 92% { opacity: 0; } 93% { opacity: 0.4; } 94.5% { opacity: 0; }
+    }
+
+    .star-beam-wrapper {
+      position: absolute; top: -10%; left: 50%; transform: translateX(-50%);
+      width: 120px; height: 70%; z-index: 4; pointer-events: none;
+      animation: beamBreathe 5s ease-in-out infinite alternate;
+    }
+    .star-beam-core {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 2px; height: 100%;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 12%, rgba(255,255,255,0.95) 40%,
+        rgba(255,255,255,0.4) 65%, rgba(255,120,50,0.1) 90%, rgba(255,77,0,0) 100%);
+      filter: blur(0.3px);
+    }
+    .star-beam-glow {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 40px; height: 100%;
+      clip-path: polygon(45% 0%, 55% 0%, 65% 100%, 35% 100%);
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0) 0%, rgba(200,220,255,0.04) 15%,
+        rgba(200,220,255,0.06) 40%, rgba(200,220,255,0.02) 65%,
+        rgba(255,77,0,0.01) 90%, transparent 100%);
+      filter: blur(8px);
+    }
+    .star-beam-scatter {
+      position: absolute; top: 30%; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 30%;
+      background: radial-gradient(ellipse, rgba(180,210,255,0.03) 0%, transparent 70%);
+      filter: blur(15px);
+    }
+    @keyframes beamBreathe { 0% { opacity: 0.65; } 100% { opacity: 1; } }
+
+    /* Hero logo — enhanced glow for dark background */
+    @keyframes logoGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(255,255,255,0.1)) drop-shadow(0 0 50px rgba(255,77,0,0.05)) drop-shadow(0 0 90px rgba(74,144,217,0.03));
+      }
+      50% {
+        filter: drop-shadow(0 0 35px rgba(255,255,255,0.18)) drop-shadow(0 0 70px rgba(255,77,0,0.1)) drop-shadow(0 0 110px rgba(74,144,217,0.05));
+      }
+    }
+    .hero-logo {
+      animation: logoGlow 4s ease-in-out infinite;
+    }
+
+    /* Hero ambient underlight */
+    @keyframes heroAmbient {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.55; }
+    }
+    .hero-ambient-glow {
+      animation: heroAmbient 6s ease-in-out infinite;
+    }
+
+    /* Architect portrait grayscale → color */
+    .architect-img {
+      filter: grayscale(0.8) brightness(0.75);
+      opacity: 0.75;
+      transition: filter 0.6s ease, opacity 0.5s ease, transform 0.6s ease;
+    }
+    @media (hover: hover) {
+      .architect-card:hover .architect-img,
+      .architect-card:focus-within .architect-img {
+        filter: grayscale(0) brightness(0.9);
+        opacity: 0.95;
+        transform: scale(1.03);
+      }
+    }
+
+    .architect-portrait-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .architect-portrait-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(13,17,23,0.6) 75%, rgba(13,17,23,0.95) 100%);
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .architect-card:hover .architect-portrait-wrap::after,
+    .architect-card:focus-within .architect-portrait-wrap::after {
+      opacity: 0.7;
+    }
+
+    /* Countdown seconds pulse */
+    @keyframes secondTick {
+      0% { transform: scale(1); }
+      15% { transform: scale(1.06); }
+      30% { transform: scale(1); }
+    }
+    .seconds-pulse {
+      animation: secondTick 1s ease-out infinite;
+      display: inline-block;
+    }
+
+    /* Hero countdown colon blink */
+    @keyframes colonBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .countdown-colon {
+      animation: colonBlink 1s ease-in-out infinite;
+    }
+
+    /* Coordinate drift */
+    @keyframes coordDrift {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(1.5px); }
+    }
+    .coord-value {
+      animation: coordDrift 8s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-35px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+    .reveal-left.active { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(35px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+    .reveal-right.active { opacity: 1; transform: translateX(0); }
+
+    .hero-stagger-1 { transition-delay: 0.3s !important; }
+    .hero-stagger-2 { transition-delay: 0.6s !important; }
+    .hero-stagger-3 { transition-delay: 0.9s !important; }
+    .hero-stagger-4 { transition-delay: 1.2s !important; }
+    .hero-stagger-5 { transition-delay: 1.5s !important; }
+
+    .pillar-content {
+      max-height: 0; overflow: hidden; overflow-y: auto;
+      opacity: 0;
+      transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease 0.1s;
+      scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.08) transparent;
+    }
+    @media (hover: hover) {
+      .pillar-card:hover .pillar-content { max-height: 45vh; opacity: 1; }
+      .pillar-card:hover .pillar-hint { opacity: 0; }
+    }
+    .pillar-card.touched .pillar-content { max-height: 45vh; opacity: 1; }
+    .pillar-card.touched .pillar-hint { opacity: 0; }
+
+    .pillar-hint { opacity: 0.4; transition: opacity 0.3s; }
+
+    .vault-scroll::-webkit-scrollbar { height: 3px; }
+    .vault-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+    .vault-scroll::-webkit-scrollbar-thumb { background: rgba(255,77,0,0.25); border-radius: 2px; }
+
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 0 12px 2px rgba(255,77,0,0.35), 0 0 35px 6px rgba(255,77,0,0.1); }
+      50% { box-shadow: 0 0 20px 5px rgba(255,77,0,0.5), 0 0 55px 12px rgba(255,77,0,0.18); }
+    }
+    .cta-pulse { animation: ctaPulse 2.5s ease-in-out infinite; }
+    .cta-locked { animation: none !important; box-shadow: 0 0 8px 1px rgba(255,77,0,0.15) !important; }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); opacity: 0.4; }
+      50% { transform: translateY(7px); opacity: 0.85; }
+    }
+    .scroll-indicator { animation: scrollBounce 2s ease-in-out infinite; }
+
+    @keyframes coordPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.25; transform: scale(0.8); }
+    }
+    .coord-dot { animation: coordPulse 1.8s ease-in-out infinite; }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,77,0,0.15), rgba(74,144,217,0.1), transparent);
+    }
+
+    @keyframes drawArc {
+      from { stroke-dashoffset: 440; }
+      to { stroke-dashoffset: 0; }
+    }
+    .precession-arc { stroke-dasharray: 440; stroke-dashoffset: 440; }
+    .precession-arc.animate { animation: drawArc 2.2s ease-out forwards; }
+
+    .noise-overlay {
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat; background-size: 256px;
+    }
+
+    .mobile-menu-enter {
+      max-height: 0; opacity: 0; overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s ease;
+    }
+    .mobile-menu-enter.open { max-height: 320px; opacity: 1; }
+
+    .nav-link-active { color: #ff4d00 !important; }
+
+    .track-num { font-variant-numeric: tabular-nums; }
+
+    @keyframes swipeHint {
+      0%, 100% { transform: translateX(0); opacity: 0.5; }
+      30% { transform: translateX(10px); opacity: 0.8; }
+      60% { transform: translateX(0); opacity: 0.5; }
+    }
+    .swipe-hint-icon { animation: swipeHint 2.5s ease-in-out infinite; }
+
+    .awakening-bg {
+      transition: transform 12s linear;
+    }
+    .awakening-bg.loaded {
+      transform: scale(1.08);
+    }
+
+    .img-fallback {
+      background: linear-gradient(135deg, #0d1117 0%, #151b26 100%);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.15s !important;
+      }
+      .star { opacity: var(--max-o) !important; }
+      .reveal, .reveal-left, .reveal-right { opacity: 1; transform: none; }
+      .precession-arc { stroke-dashoffset: 0 !important; }
+      .noise-overlay { display: none; }
+      .cta-pulse { animation: none; box-shadow: 0 0 15px 3px rgba(255,77,0,0.35); }
+      .awakening-bg { transition: none !important; transform: none !important; }
+      .awakening-bg.loaded { transform: none !important; }
+      .hero-logo { animation: none !important; }
+      .seconds-pulse { animation: none !important; }
+      .coord-value { animation: none !important; }
+      .countdown-colon { animation: none !important; opacity: 1 !important; }
+      .hero-ambient-glow { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div id="starField" class="fixed inset-0 pointer-events-none z-0" aria-hidden="true"></div>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav id="mainNav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" role="navigation" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-5 md:px-12 flex items-center justify-between h-14 md:h-20">
+      <a href="#hero" class="font-cinzel text-sm md:text-base tracking-[0.2em] text-steel/80 hover:text-ember transition-colors duration-300" aria-label="North Star Rising — Return to top">NSR</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#triad" class="nav-section-link text-[11px] font-inter font-medium tracking-[0.15em] uppercase text-ghost hover:text-ice-light transition-colors duration-300 py-2" data-section="triad">The Triad</a>
+        <a href="#vagabond" class="nav-section-link text-[11px] font-inter font-medium tracking-[0.15em] uppercase text-ghost hover:text-ice-light transition-colors duration-300 py-2" data-section="vagabond">The Log</a>
+        <a href="#architects" class="nav-section-link text-[11px] font-inter font-medium tracking-[0.15em] uppercase text-ghost hover:text-ice-light transition-colors duration-300 py-2" data-section="architects">Architects</a>
+        <a href="#vault" class="nav-section-link text-[11px] font-inter font-medium tracking-[0.15em] uppercase text-ghost hover:text-ice-light transition-colors duration-300 py-2" data-section="vault">Vault</a>
+        <a href="#awakening" class="nav-section-link text-[11px] font-inter font-medium tracking-[0.15em] uppercase text-ember/80 hover:text-ember transition-colors duration-300 py-2" data-section="awakening">Awakening</a>
+      </div>
+      <button id="mobileMenuBtn" class="md:hidden text-steel/70 hover:text-ember transition-colors w-11 h-11 flex items-center justify-center -mr-1" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
+        <iconify-icon icon="lucide:menu" width="20" id="menuIconOpen"></iconify-icon>
+        <iconify-icon icon="lucide:x" width="20" id="menuIconClose" class="hidden"></iconify-icon>
+      </button>
+    </div>
+    <div id="mobileMenu" class="md:hidden mobile-menu-enter bg-void/95 border-t border-white/5" role="menu">
+      <div class="px-5 py-4 flex flex-col gap-1">
+        <a href="#triad" class="nav-section-link-mobile text-[12px] font-medium tracking-[0.15em] uppercase text-ghost hover:text-ice-light transition-colors py-3 px-2 rounded" role="menuitem" data-section="triad">The Triad</a>
+        <a href="#vagabond" class="nav-section-link-mobile text-[12px] font-medium tracking-[0.15em] uppercase text-ghost hover:text-ice-light transition-colors py-3 px-2 rounded" role="menuitem" data-section="vagabond">The Log</a>
+        <a href="#architects" class="nav-section-link-mobile text-[12px] font-medium tracking-[0.15em] uppercase text-ghost hover:text-ice-light transition-colors py-3 px-2 rounded" role="menuitem" data-section="architects">Architects</a>
+        <a href="#vault" class="nav-section-link-mobile text-[12px] font-medium tracking-[0.15em] uppercase text-ghost hover:text-ice-light transition-colors py-3 px-2 rounded" role="menuitem" data-section="vault">Vault</a>
+        <a href="#awakening" class="nav-section-link-mobile text-[12px] font-medium tracking-[0.15em] uppercase text-ember/80 hover:text-ember transition-colors py-3 px-2 rounded" role="menuitem" data-section="awakening">Awakening</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO: THE CORE SIGNAL ==================== -->
+  <!-- Logo-centric design: dark void + atmospheric effects = the "nice background" -->
+  <!-- The logomark on alpha shines against the starfield, lightning, and beam -->
+  <section id="hero" class="relative min-h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden" aria-label="Hero">
+
+    <!-- Subtle photographic texture layer — Cloaked Soldier at very low opacity for depth -->
+    <div class="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <img src="https://raw.githubusercontent.com/northstarrisingofficial-cell/FIC/refs/heads/main/Cloaked_Soldier_ASH_Square.png"
+           alt="" role="presentation" class="w-full h-full object-cover object-center opacity-[0.06] scale-110"
+           fetchpriority="high" onerror="this.style.display='none'">
+    </div>
+
+    <!-- Ambient color glow — deep ember/ice underlight behind logo area -->
+    <div class="absolute inset-0 z-[1] pointer-events-none" aria-hidden="true">
+      <div class="hero-ambient-glow absolute top-[25%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full"
+           style="background:radial-gradient(ellipse, rgba(255,77,0,0.035) 0%, rgba(74,144,217,0.02) 40%, transparent 70%)"></div>
+      <div class="hero-ambient-glow absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[250px] rounded-full"
+           style="background:radial-gradient(ellipse, rgba(255,255,255,0.015) 0%, transparent 60%); animation-delay: 3s"></div>
+    </div>
+
+    <!-- Vignette — focuses the eye center -->
+    <div class="absolute inset-0 z-[2]" style="background:radial-gradient(ellipse at center, transparent 30%, rgba(6,6,11,0.6) 70%, rgba(6,6,11,0.95) 100%)" aria-hidden="true"></div>
+
+    <div class="lightning-layer" aria-hidden="true">
+      <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid slice">
+        <polyline class="lightning-bolt bolt-a" points="180,0 195,80 170,95 200,180 168,195 198,300 175,315 205,420 185,435 210,540" fill="none" stroke="rgba(200,220,255,0.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline class="lightning-bolt bolt-a" points="195,80 220,110" fill="none" stroke="rgba(200,220,255,0.4)" stroke-width="0.8"/>
+        <polyline class="lightning-bolt bolt-a" points="200,180 230,200" fill="none" stroke="rgba(200,220,255,0.3)" stroke-width="0.6"/>
+        <polyline class="lightning-bolt bolt-b" points="750,0 735,70 758,85 730,160 755,175 725,260 748,275 720,370" fill="none" stroke="rgba(200,220,255,0.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline class="lightning-bolt bolt-b" points="735,70 710,100" fill="none" stroke="rgba(200,220,255,0.3)" stroke-width="0.6"/>
+        <polyline class="lightning-bolt bolt-c" points="560,0 572,60 555,72 568,130 550,142 565,210" fill="none" stroke="rgba(200,220,255,0.6)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="sky-flash sky-flash-a"></div>
+      <div class="sky-flash sky-flash-b"></div>
+    </div>
+
+    <div class="star-beam-wrapper" aria-hidden="true">
+      <div class="star-beam-scatter"></div>
+      <div class="star-beam-glow"></div>
+      <div class="star-beam-core"></div>
+    </div>
+
+    <!-- Hero content — all visible above the fold -->
+    <div class="relative z-10 text-center px-5 pt-16 pb-6 flex flex-col items-center justify-center min-h-screen min-h-[100dvh]">
+
+      <!-- Logo — the hero's focal point -->
+      <div class="mb-3 md:mb-5 reveal hero-stagger-1">
+        <img src="https://raw.githubusercontent.com/northstarrisingofficial-cell/FIC/refs/heads/main/Logomark-WHITE_Isolated-AlphaBG.png"
+             alt="North Star Rising — STAR winged logomark"
+             class="hero-logo mx-auto w-[60%] max-w-[180px] sm:max-w-[240px] md:max-w-[320px] lg:max-w-[400px]"
+             fetchpriority="high"
+             onerror="this.alt='★';this.style.cssText='font-family:Cinzel,serif;font-size:clamp(2.5rem,10vw,5rem);letter-spacing:0.3em;color:#e2e5ea;'">
+      </div>
+
+      <!-- Band name + Title -->
+      <div class="reveal hero-stagger-2">
+        <p class="font-cinzel text-[9px] sm:text-[10px] md:text-xs tracking-[0.3em] sm:tracking-[0.35em] uppercase text-ghost-dim mb-2 md:mb-3">North Star Rising presents</p>
+        <h1 class="font-cinzel text-2xl sm:text-3xl md:text-5xl lg:text-6xl tracking-[0.06em] sm:tracking-[0.08em] text-steel leading-[1.15]">Frozen in Carbide</h1>
+      </div>
+
+      <!-- Divider -->
+      <div class="reveal hero-stagger-3 mt-4 sm:mt-5 md:mt-6 mb-3 sm:mb-4 md:mb-5">
+        <div class="w-10 h-px bg-gradient-to-r from-transparent via-ember/30 to-transparent mx-auto" aria-hidden="true"></div>
+      </div>
+
+      <!-- Compact countdown — visible on arrival -->
+      <div class="reveal hero-stagger-4">
+        <p class="text-[8px] sm:text-[9px] tracking-[0.25em] sm:tracking-[0.3em] uppercase text-ghost-faint mb-2 sm:mb-2.5">The Awakening — May 15, 2026</p>
+        <div class="flex items-baseline justify-center gap-0.5 sm:gap-1" role="timer" aria-label="Countdown to release day">
+          <div class="text-center">
+            <span id="hero-days" class="font-cinzel text-lg sm:text-xl md:text-2xl text-steel/90">---</span>
+            <span class="block text-[6px] sm:text-[7px] tracking-[0.15em] uppercase text-ghost-faint mt-0.5">Days</span>
+          </div>
+          <span class="countdown-colon font-cinzel text-base sm:text-lg md:text-xl text-ghost-faint/50 mx-0.5 sm:mx-1 self-start mt-[2px]">:</span>
+          <div class="text-center">
+            <span id="hero-hours" class="font-cinzel text-lg sm:text-xl md:text-2xl text-steel/90">--</span>
+            <span class="block text-[6px] sm:text-[7px] tracking-[0.15em] uppercase text-ghost-faint mt-0.5">Hrs</span>
+          </div>
+          <span class="countdown-colon font-cinzel text-base sm:text-lg md:text-xl text-ghost-faint/50 mx-0.5 sm:mx-1 self-start mt-[2px]" style="animation-delay:0.5s">:</span>
+          <div class="text-center">
+            <span id="hero-minutes" class="font-cinzel text-lg sm:text-xl md:text-2xl text-steel/90">--</span>
+            <span class="block text-[6px] sm:text-[7px] tracking-[0.15em] uppercase text-ghost-faint mt-0.5">Min</span>
+          </div>
+          <span class="countdown-colon font-cinzel text-base sm:text-lg md:text-xl text-ember/40 mx-0.5 sm:mx-1 self-start mt-[2px]" style="animation-delay:1s">:</span>
+          <div class="text-center">
+            <span id="hero-seconds" class="seconds-pulse font-cinzel text-lg sm:text-xl md:text-2xl text-ember/80">--</span>
+            <span class="block text-[6px] sm:text-[7px] tracking-[0.15em] uppercase text-ghost-faint mt-0.5">Sec</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tagline — compact, below countdown -->
+      <div class="reveal hero-stagger-5 mt-4 sm:mt-5 md:mt-6 max-w-sm mx-auto">
+        <p class="font-cormorant italic text-[13px] sm:text-sm md:text-base text-steel/50 leading-relaxed px-4">
+          "We do not sing <span class="text-ember/70">ABOUT</span> the stars. We use the stars to explain ourselves."
+        </p>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-5 left-1/2 -translate-x-1/2 scroll-indicator" aria-hidden="true">
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-[7px] tracking-[0.3em] uppercase text-ghost-faint">Descend</span>
+          <iconify-icon icon="lucide:chevron-down" width="12" class="text-ghost-faint"></iconify-icon>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main id="main-content">
+
+  <!-- ==================== TRIAD ==================== -->
+  <section id="triad" class="relative py-20 md:py-32" aria-label="The Triad of Power">
+    <div class="max-w-6xl mx-auto px-5 md:px-12">
+      <div class="text-center mb-12 md:mb-20 reveal">
+        <p class="text-[10px] tracking-[0.3em] uppercase text-ember/60 font-medium mb-3 md:mb-4">The Existential Compass</p>
+        <h2 class="font-cinzel text-xl sm:text-2xl md:text-4xl tracking-[0.04em] text-steel mb-4 md:mb-5">The Triad of Power</h2>
+        <p class="text-xs sm:text-sm text-ghost-dim max-w-md mx-auto leading-relaxed font-light">Three monolithic pillars form the foundation upon which every note and silence is constructed.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+        <!-- Science -->
+        <div class="pillar-card border border-cold-blue/15 bg-charcoal/40 rounded-sm cursor-pointer hover:border-ice/25 transition-all duration-300 reveal" style="transition-delay:0.1s" tabindex="0" role="button" aria-expanded="false" aria-label="Science pillar">
+          <div class="p-6 sm:p-8 md:p-9">
+            <div class="flex items-center gap-3 sm:gap-4 mb-5">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center border border-ice/15 rounded-sm bg-ice/5">
+                <iconify-icon icon="lucide:atom" width="20" class="text-ice"></iconify-icon>
+              </div>
+              <div>
+                <span class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ghost-faint">Pillar I</span>
+                <h3 class="font-cinzel text-base sm:text-lg tracking-wide text-ice-light">Science</h3>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-ghost-dim leading-relaxed font-light">The Foundation — the proven reality forming the hidden truth beneath the narrative.</p>
+            <div class="pillar-hint flex items-center gap-1 mt-4 text-[9px] text-ghost-faint tracking-wider uppercase">
+              <iconify-icon icon="lucide:chevron-down" width="10"></iconify-icon>
+              <span class="pillar-hint-label">Reveal</span>
+            </div>
+            <div class="pillar-content">
+              <div class="mt-5 pt-5 border-t border-white/5">
+                <p class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ice/40 mb-1.5">The Law</p>
+                <p class="font-cinzel text-xs sm:text-sm text-ice/80 mb-3 sm:mb-4">The Law of Objective Anchoring</p>
+                <p class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ice/40 mb-1.5">The Source Code</p>
+                <p class="text-xs sm:text-sm text-ghost-dim leading-relaxed font-light">Astrophysical data, precessional mathematics, and celestial mechanics—the immutable source code from which all artistic meaning is derived.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Human -->
+        <div class="pillar-card border border-ember/10 bg-charcoal/40 rounded-sm cursor-pointer hover:border-ember/25 transition-all duration-300 reveal" style="transition-delay:0.2s" tabindex="0" role="button" aria-expanded="false" aria-label="Human pillar">
+          <div class="p-6 sm:p-8 md:p-9">
+            <div class="flex items-center gap-3 sm:gap-4 mb-5">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center border border-ember/15 rounded-sm bg-ember/5">
+                <iconify-icon icon="lucide:heart-pulse" width="20" class="text-ember"></iconify-icon>
+              </div>
+              <div>
+                <span class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ghost-faint">Pillar II</span>
+                <h3 class="font-cinzel text-base sm:text-lg tracking-wide text-ember-glow">Human</h3>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-ghost-dim leading-relaxed font-light">The Translation — cosmic data becomes human emotion: recognition, fears, and hopes.</p>
+            <div class="pillar-hint flex items-center gap-1 mt-4 text-[9px] text-ghost-faint tracking-wider uppercase">
+              <iconify-icon icon="lucide:chevron-down" width="10"></iconify-icon>
+              <span class="pillar-hint-label">Reveal</span>
+            </div>
+            <div class="pillar-content">
+              <div class="mt-5 pt-5 border-t border-white/5">
+                <p class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ember/40 mb-1.5">The Law</p>
+                <p class="font-cinzel text-xs sm:text-sm text-ember/80 mb-3 sm:mb-4">The Law of the Existential Mirror</p>
+                <p class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ember/40 mb-1.5">The Language</p>
+                <p class="text-xs sm:text-sm text-ghost-dim leading-relaxed font-light">Scientific data translated into the language of human experience—the recognition of smallness, the fear of losing our anchor, the hope of finding a truer north. Emotion is not added; it is revealed.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mystery -->
+        <div class="pillar-card border border-purple-400/10 bg-charcoal/40 rounded-sm cursor-pointer hover:border-purple-400/25 transition-all duration-300 reveal" style="transition-delay:0.3s" tabindex="0" role="button" aria-expanded="false" aria-label="Mystery pillar">
+          <div class="p-6 sm:p-8 md:p-9">
+            <div class="flex items-center gap-3 sm:gap-4 mb-5">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center border border-purple-400/15 rounded-sm bg-purple-400/5">
+                <iconify-icon icon="lucide:eye-off" width="20" class="text-purple-400"></iconify-icon>
+              </div>
+              <div>
+                <span class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ghost-faint">Pillar III</span>
+                <h3 class="font-cinzel text-base sm:text-lg tracking-wide text-purple-300">Mystery</h3>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-ghost-dim leading-relaxed font-light">The Veil — the aesthetic shell where truths are encrypted into poetic narratives.</p>
+            <div class="pillar-hint flex items-center gap-1 mt-4 text-[9px] text-ghost-faint tracking-wider uppercase">
+              <iconify-icon icon="lucide:chevron-down" width="10"></iconify-icon>
+              <span class="pillar-hint-label">Reveal</span>
+            </div>
+            <div class="pillar-content">
+              <div class="mt-5 pt-5 border-t border-white/5">
+                <p class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-purple-400/40 mb-1.5">The Law</p>
+                <p class="font-cinzel text-xs sm:text-sm text-purple-300/80 mb-3 sm:mb-4">The Law of Encrypted Magnitude</p>
+                <p class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-purple-400/40 mb-1.5">The Veil</p>
+                <p class="text-xs sm:text-sm text-ghost-dim leading-relaxed font-light">Scientific and human truths encrypted within metaphor, symbol, and sound—wrapped in an enigmatic veil that satisfies the search for the inexplicable with the miracle of reality.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+  <!-- ==================== VAGABOND'S LOG ==================== -->
+  <section id="vagabond" class="relative py-20 md:py-32 overflow-hidden" aria-label="The Vagabond's Log">
+    <div class="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <img src="https://raw.githubusercontent.com/northstarrisingofficial-cell/FIC/refs/heads/main/Cloaked_Soldier_ASH_Square.png"
+           alt="" class="w-full h-full object-cover object-top opacity-[0.07] blur-[1px] scale-110"
+           loading="lazy" onerror="this.style.display='none'">
+    </div>
+    <div class="relative z-[1] max-w-6xl mx-auto px-5 md:px-12">
+      <div class="text-center mb-12 md:mb-20 reveal">
+        <p class="text-[10px] tracking-[0.3em] uppercase text-ice/40 font-medium mb-3 md:mb-4">Narrative Immersion</p>
+        <h2 class="font-cinzel text-xl sm:text-2xl md:text-4xl tracking-[0.04em] text-steel mb-4 md:mb-5">The Vagabond's Log</h2>
+        <p class="text-xs sm:text-sm text-ghost-dim max-w-md mx-auto leading-relaxed font-light">A 26,000-year cosmic drift. One wanderer. One signal in the unmappable dark.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+        <div class="reveal-left space-y-4 sm:space-y-5">
+          <div class="border border-cold-blue/12 bg-charcoal/25 rounded-sm p-6 sm:p-8 md:p-9">
+            <p class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ice/35 mb-5">The Precession Cycle — 26,000 Years</p>
+            <div class="flex justify-center">
+              <svg id="precessionSVG" viewBox="0 0 300 300" class="w-full max-w-[220px] sm:max-w-[260px]" role="img" aria-label="Earth's 26,000 year axial precession from Polaris to Vega">
+                <circle cx="150" cy="150" r="110" fill="none" stroke="rgba(74,144,217,0.05)" stroke-width="1" stroke-dasharray="4 4"/>
+                <path class="precession-arc" d="M 150 40 A 110 110 0 1 1 58 232" fill="none" stroke="url(#arcGrad)" stroke-width="1.5" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#4a90d9;stop-opacity:0.7"/>
+                    <stop offset="55%" style="stop-color:#7ab8f5;stop-opacity:0.4"/>
+                    <stop offset="100%" style="stop-color:#ff4d00;stop-opacity:0.7"/>
+                  </linearGradient>
+                  <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#ff4d00;stop-opacity:0.5"/>
+                    <stop offset="100%" style="stop-color:#ff4d00;stop-opacity:0"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="150" cy="150" r="5" fill="#0d1117" stroke="#4a90d9" stroke-width="0.8"/>
+                <text x="150" y="168" text-anchor="middle" fill="#6b7585" font-size="7" font-family="Inter" letter-spacing="0.15em">EARTH</text>
+                <circle cx="150" cy="40" r="4" fill="#4a90d9"/>
+                <circle cx="150" cy="40" r="8" fill="none" stroke="#4a90d9" stroke-width="0.4" opacity="0.3"/>
+                <text x="150" y="27" text-anchor="middle" fill="#7ab8f5" font-size="8" font-family="Cinzel" letter-spacing="0.08em">POLARIS</text>
+                <text x="150" y="17" text-anchor="middle" fill="#4e5565" font-size="6" font-family="Inter">The Past Guide</text>
+                <circle cx="58" cy="232" r="4" fill="#ff4d00"/>
+                <circle cx="58" cy="232" r="12" fill="url(#dotGlow)"/>
+                <text x="58" y="253" text-anchor="middle" fill="#ff6a2a" font-size="8" font-family="Cinzel" letter-spacing="0.08em">VEGA</text>
+                <text x="58" y="264" text-anchor="middle" fill="#4e5565" font-size="6" font-family="Inter">The True Anchor</text>
+                <text x="88" y="155" text-anchor="middle" fill="#4e5565" font-size="6" font-family="Cormorant Garamond" font-style="italic" opacity="0.5">absence of origin</text>
+                <circle cx="143" cy="48" r="2.5" fill="#e2e5ea" opacity="0.8">
+                  <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <text x="130" y="46" text-anchor="end" fill="#e2e5ea" font-size="5.5" font-family="Inter" opacity="0.5">YOU ARE HERE</text>
+                <text x="215" y="105" fill="#4e5565" font-size="5.5" font-family="Inter" transform="rotate(35,215,105)">~13,000 yrs</text>
+              </svg>
+            </div>
+            <p class="text-[9px] sm:text-[10px] text-ghost-faint text-center mt-3 font-light">Earth's axial precession traces a 26,000-year circle</p>
+          </div>
+          <div class="grid grid-cols-2 gap-3 sm:gap-4">
+            <div class="border border-cold-blue/8 bg-charcoal/15 rounded-sm p-4 sm:p-5">
+              <div class="flex items-center gap-1.5 mb-2 sm:mb-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-ice coord-dot flex-shrink-0"></div>
+                <span class="text-[8px] sm:text-[9px] tracking-[0.15em] sm:tracking-[0.2em] uppercase text-ice/40">Polaris</span>
+              </div>
+              <p class="font-inter text-sm sm:text-lg text-ice-light tracking-wider coord-value" style="font-variant-numeric:tabular-nums">+89° 15' 51"</p>
+              <p class="text-[8px] sm:text-[9px] text-ghost-faint mt-0.5 sm:mt-1">Declination — Current North</p>
+            </div>
+            <div class="border border-ember/8 bg-charcoal/15 rounded-sm p-4 sm:p-5">
+              <div class="flex items-center gap-1.5 mb-2 sm:mb-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-ember coord-dot flex-shrink-0" style="animation-delay:0.6s"></div>
+                <span class="text-[8px] sm:text-[9px] tracking-[0.15em] sm:tracking-[0.2em] uppercase text-ember/40">Vega</span>
+              </div>
+              <p class="font-inter text-sm sm:text-lg text-ember-glow tracking-wider coord-value" style="font-variant-numeric:tabular-nums;animation-delay:2s">+38° 47' 01"</p>
+              <p class="text-[8px] sm:text-[9px] text-ghost-faint mt-0.5 sm:mt-1">Declination — Future North</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-right space-y-6 sm:space-y-7">
+          <div>
+            <p class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ember/35 mb-2 sm:mb-3">Log Entry I — The Drift</p>
+            <p class="font-cormorant italic text-base sm:text-lg md:text-xl text-steel/75 leading-relaxed">We are passengers on a wanderer—a planet adrift in the unmappable dark, spinning on an axis that does not hold still. For twelve thousand years, we have fixed our eyes on Polaris, believing it eternal. We were wrong.</p>
+          </div>
+          <div class="w-6 h-px bg-gradient-to-r from-ember/25 to-transparent" aria-hidden="true"></div>
+          <div>
+            <p class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ice/35 mb-2 sm:mb-3">Log Entry II — The Absence</p>
+            <p class="font-cormorant italic text-base sm:text-lg md:text-xl text-steel/75 leading-relaxed">The axis tilts. Slowly, imperceptibly, the North Star drifts from its throne. Between Polaris and Vega lies a void—an absence of origin where no star claims the pole. We enter that darkness now.</p>
+          </div>
+          <div class="w-6 h-px bg-gradient-to-r from-ice/25 to-transparent" aria-hidden="true"></div>
+          <div>
+            <p class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-purple-400/35 mb-2 sm:mb-3">Log Entry III — The Signal</p>
+            <p class="font-cormorant italic text-base sm:text-lg md:text-xl text-steel/75 leading-relaxed">But in the deepest dark, a signal persists—not from the brightest star, but from the one that knows the way. The vagabond does not wander aimlessly. The vagabond is searching.</p>
+          </div>
+          <div class="w-6 h-px bg-gradient-to-r from-purple-400/25 to-transparent" aria-hidden="true"></div>
+          <div>
+            <p class="text-[8px] sm:text-[9px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ember/35 mb-2 sm:mb-3">Log Entry IV — The Anchor</p>
+            <p class="font-cormorant italic text-base sm:text-lg md:text-xl text-steel/75 leading-relaxed">Vega waits. Not as a replacement, but as a truer anchor—a star that earned its position not by brightness, but by patience. The vagabond of eternity will find its north again. It always does.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+  <!-- ==================== ARCHITECTS ==================== -->
+  <section id="architects" class="relative py-20 md:py-32" aria-label="The Architects of the North">
+    <div class="max-w-5xl mx-auto px-5 md:px-12">
+      <div class="text-center mb-12 md:mb-20 reveal">
+        <p class="text-[10px] tracking-[0.3em] uppercase text-ember/50 font-medium mb-3 md:mb-4">Proven Catalog. Proven Talent.</p>
+        <h2 class="font-cinzel text-xl sm:text-2xl md:text-4xl tracking-[0.04em] text-steel mb-4 md:mb-5">The Architects of the North</h2>
+        <p class="text-xs sm:text-sm text-ghost-dim max-w-lg mx-auto leading-relaxed font-light">Low-risk, high-upside. Built on a foundation of half a billion streams and a globally established audience.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-5">
+
+        <!-- LINDA -->
+        <div class="architect-card reveal border border-white/5 bg-charcoal/25 rounded-sm overflow-hidden hover:border-ember/12 transition-all duration-[400ms]" style="transition-delay:0.1s">
+          <div class="architect-portrait-wrap aspect-[4/5] sm:aspect-[16/12] img-fallback">
+            <img src="https://raw.githubusercontent.com/northstarrisingofficial-cell/FIC/refs/heads/main/Linda%2BName.png"
+                 alt="Linda Toni Grahn — Voice of the Vagabond" class="w-full h-full object-cover object-top architect-img"
+                 loading="lazy" onerror="this.style.display='none'">
+            <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8 z-10">
+              <h3 class="font-cinzel text-lg sm:text-xl md:text-2xl tracking-wide text-steel drop-shadow-[0_2px_8px_rgba(6,6,11,0.9)]">Linda Toni Grahn</h3>
+              <p class="text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em] uppercase text-ember/60 mt-0.5 sm:mt-1 drop-shadow-[0_1px_4px_rgba(6,6,11,0.9)]">Voice of the Vagabond</p>
+            </div>
+          </div>
+          <div class="p-5 sm:p-6 md:p-8 pt-3 sm:pt-4 space-y-3 sm:space-y-4">
+            <div class="grid grid-cols-2 gap-2.5 sm:gap-3">
+              <div class="bg-void/40 border border-white/5 rounded-sm p-3 sm:p-4 text-center">
+                <p class="font-cinzel text-xl sm:text-2xl text-ember-glow">Multi-M</p>
+                <p class="text-[8px] sm:text-[9px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ghost-faint mt-0.5 sm:mt-1">Streams</p>
+              </div>
+              <div class="bg-void/40 border border-white/5 rounded-sm p-3 sm:p-4 text-center">
+                <p class="font-cinzel text-base sm:text-lg text-purple-300">Nuclear Blast</p>
+                <p class="text-[8px] sm:text-[9px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ghost-faint mt-0.5 sm:mt-1">Legacy</p>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-ghost-dim leading-relaxed font-light">Former front person for <span class="text-ember-glow/80">Follow the Cipher</span> with a celebrated legacy on the iconic <span class="text-purple-300/80">Nuclear Blast</span> label. A global audience and multi-million streaming catalog that proves the power of her voice.</p>
+          </div>
+        </div>
+
+        <!-- KEN -->
+        <div class="architect-card reveal border border-white/5 bg-charcoal/25 rounded-sm overflow-hidden hover:border-ice/12 transition-all duration-[400ms]" style="transition-delay:0.2s">
+          <div class="architect-portrait-wrap aspect-[4/5] sm:aspect-[16/12] img-fallback">
+            <img src="https://raw.githubusercontent.com/northstarrisingofficial-cell/FIC/refs/heads/main/Ken%2BName.png"
+                 alt="Ken Kängström — Master Architect and Songwriter" class="w-full h-full object-cover object-top architect-img"
+                 loading="lazy" onerror="this.style.display='none'">
+            <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8 z-10">
+              <h3 class="font-cinzel text-lg sm:text-xl md:text-2xl tracking-wide text-steel drop-shadow-[0_2px_8px_rgba(6,6,11,0.9)]">Ken Kängström</h3>
+              <p class="text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em] uppercase text-ice/60 mt-0.5 sm:mt-1 drop-shadow-[0_1px_4px_rgba(6,6,11,0.9)]">Master Architect & Songwriter</p>
+            </div>
+          </div>
+          <div class="p-5 sm:p-6 md:p-8 pt-3 sm:pt-4 space-y-3 sm:space-y-4">
+            <div class="grid grid-cols-2 gap-2.5 sm:gap-3">
+              <div class="bg-void/40 border border-white/5 rounded-sm p-3 sm:p-4 text-center">
+                <p class="font-cinzel text-xl sm:text-2xl text-ice-light">500M+</p>
+                <p class="text-[8px] sm:text-[9px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ghost-faint mt-0.5 sm:mt-1">Streams</p>
+              </div>
+              <div class="bg-void/40 border border-white/5 rounded-sm p-3 sm:p-4 text-center">
+                <p class="font-cinzel text-lg sm:text-2xl text-ember-glow">Top 1%</p>
+                <p class="text-[8px] sm:text-[9px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ghost-faint mt-0.5 sm:mt-1">Writer</p>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-ghost-dim leading-relaxed font-light">A veteran songwriter for the globally acclaimed <span class="text-ice-light/80">Sabaton</span>, Ken brings a battle-tested catalog spanning continents. Over half a billion streams—each one proof of concept.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+  <!-- ==================== PHYSICAL VAULT ==================== -->
+  <section id="vault" class="relative py-20 md:py-32" aria-label="The Physical Vault">
+    <div class="max-w-7xl mx-auto px-5 md:px-12" style="overflow-x:clip">
+      <div class="text-center mb-12 md:mb-20 reveal">
+        <p class="text-[10px] tracking-[0.3em] uppercase text-ember/50 font-medium mb-3 md:mb-4">Limited Edition</p>
+        <h2 class="font-cinzel text-xl sm:text-2xl md:text-4xl tracking-[0.04em] text-steel mb-4 md:mb-5">The Physical Vault</h2>
+        <p class="text-xs sm:text-sm text-ghost-dim max-w-md mx-auto leading-relaxed font-light">Tangible artifacts from the void. Each piece forged for the collector who understands that some signals must be held.</p>
+      </div>
+
+      <div class="vault-scroll flex gap-4 sm:gap-5 md:gap-7 overflow-x-auto pb-5 snap-x snap-mandatory -mx-5 px-5 md:mx-0 md:px-0">
+
+        <!-- Vinyl -->
+        <div class="snap-center flex-shrink-0 w-[75vw] sm:w-[280px] md:w-[320px] lg:w-[340px] reveal" style="transition-delay:0.1s">
+          <div class="border border-white/5 bg-charcoal/15 rounded-sm overflow-hidden group h-full flex flex-col">
+            <div class="relative aspect-square overflow-hidden img-fallback flex-shrink-0">
+              <img src="https://raw.githubusercontent.com/northstarrisingofficial-cell/FIC/refs/heads/main/Mockup_CarbideSoldiers_CoverArt.png"
+                   alt="Frozen in Carbide — 12-Inch Vinyl Album Cover Art" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-75 group-hover:opacity-95"
+                   loading="lazy" onerror="this.style.display='none'">
+              <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 text-[7px] sm:text-[8px] tracking-[0.15em] sm:tracking-[0.2em] uppercase bg-void/60 backdrop-blur-sm text-ghost px-2 sm:px-3 py-0.5 sm:py-1 rounded-sm border border-white/5">Collector's Edition</span>
+            </div>
+            <div class="p-4 sm:p-6 flex-grow flex flex-col">
+              <h3 class="font-cinzel text-sm sm:text-base tracking-wide text-steel mb-0.5">12-Inch Vinyl</h3>
+              <p class="text-[8px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ice/40 mb-2 sm:mb-3">Clear · Red & Blue Splatter</p>
+              <p class="text-[11px] sm:text-xs text-ghost-dim leading-relaxed font-light flex-grow">180g clear vinyl with hand-poured red and blue splatter—mirroring the collision of Polaris and Vega. Features the full album cover art.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cassette -->
+        <div class="snap-center flex-shrink-0 w-[75vw] sm:w-[280px] md:w-[320px] lg:w-[340px] reveal" style="transition-delay:0.2s">
+          <div class="border border-white/5 bg-charcoal/15 rounded-sm overflow-hidden group h-full flex flex-col">
+            <div class="relative aspect-square overflow-hidden img-fallback flex-shrink-0">
+              <img src="https://raw.githubusercontent.com/northstarrisingofficial-cell/FIC/refs/heads/main/Cloaked_Soldier_ASH_Square.png"
+                   alt="Carbide-Encrusted Cassette — Frozen in Carbide thematic artwork" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-75 group-hover:opacity-95"
+                   loading="lazy" onerror="this.style.display='none'">
+              <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 text-[7px] sm:text-[8px] tracking-[0.15em] sm:tracking-[0.2em] uppercase bg-void/60 backdrop-blur-sm text-ghost px-2 sm:px-3 py-0.5 sm:py-1 rounded-sm border border-white/5">Limited Run</span>
+            </div>
+            <div class="p-4 sm:p-6 flex-grow flex flex-col">
+              <h3 class="font-cinzel text-sm sm:text-base tracking-wide text-steel mb-0.5">Encrusted Cassette</h3>
+              <p class="text-[8px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ember/40 mb-2 sm:mb-3">Carbide-Finish Shell</p>
+              <p class="text-[11px] sm:text-xs text-ghost-dim leading-relaxed font-light flex-grow">A weathered, carbide-encrusted cassette shell—textured and brutalist. The physical embodiment of being frozen in carbide.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CD -->
+        <div class="snap-center flex-shrink-0 w-[75vw] sm:w-[280px] md:w-[320px] lg:w-[340px] reveal" style="transition-delay:0.3s">
+          <div class="border border-white/5 bg-charcoal/15 rounded-sm overflow-hidden group h-full flex flex-col">
+            <div class="relative aspect-square overflow-hidden bg-gradient-to-br from-slate to-charcoal flex items-center justify-center flex-shrink-0">
+              <div class="text-center p-5 sm:p-6 w-full">
+                <iconify-icon icon="lucide:disc-3" width="36" class="text-ice/15 mb-2 sm:mb-3"></iconify-icon>
+                <p class="font-cinzel text-xs sm:text-sm text-ghost/30 tracking-wider mb-4 sm:mb-5">CD Digipak</p>
+                <div class="space-y-1 sm:space-y-1.5 text-left max-w-[180px] sm:max-w-[200px] mx-auto">
+                  <div class="flex gap-1.5 sm:gap-2"><span class="text-[8px] sm:text-[9px] text-ghost-faint track-num w-3 sm:w-4">01</span><span class="text-[8px] sm:text-[9px] text-ghost/35 truncate">Overture to Nothingness</span></div>
+                  <div class="flex gap-1.5 sm:gap-2"><span class="text-[8px] sm:text-[9px] text-ghost-faint track-num w-3 sm:w-4">02</span><span class="text-[8px] sm:text-[9px] text-ghost/35 truncate">The Law of Anchoring</span></div>
+                  <div class="flex gap-1.5 sm:gap-2"><span class="text-[8px] sm:text-[9px] text-ghost-faint track-num w-3 sm:w-4">03</span><span class="text-[8px] sm:text-[9px] text-ghost/35 truncate">Polar Drift</span></div>
+                  <div class="flex gap-1.5 sm:gap-2"><span class="text-[8px] sm:text-[9px] text-ghost-faint track-num w-3 sm:w-4">04</span><span class="text-[8px] sm:text-[9px] text-ghost/35 truncate">Recognition</span></div>
+                  <div class="flex gap-1.5 sm:gap-2"><span class="text-[8px] sm:text-[9px] text-ghost-faint track-num w-3 sm:w-4">05</span><span class="text-[8px] sm:text-[9px] text-ghost/35 truncate">The Veil of Magnitude</span></div>
+                  <div class="flex gap-1.5 sm:gap-2"><span class="text-[8px] sm:text-[9px] text-ghost-faint track-num w-3 sm:w-4">06</span><span class="text-[8px] sm:text-[9px] text-ghost/35 truncate">Carbide Heart</span></div>
+                  <div class="flex gap-1.5 sm:gap-2"><span class="text-[8px] sm:text-[9px] text-ghost-faint track-num w-3 sm:w-4">07</span><span class="text-[8px] sm:text-[9px] text-ghost/35 truncate">Vagabond of Eternity</span></div>
+                  <div class="flex gap-1.5 sm:gap-2"><span class="text-[8px] sm:text-[9px] text-ghost-faint track-num w-3 sm:w-4">08</span><span class="text-[8px] sm:text-[9px] text-ghost/35 truncate">Signal in the Dark</span></div>
+                  <div class="flex gap-1.5 sm:gap-2"><span class="text-[8px] sm:text-[9px] text-ghost-faint track-num w-3 sm:w-4">09</span><span class="text-[8px] sm:text-[9px] text-ghost/35 truncate">Frozen in Carbide</span></div>
+                  <div class="flex gap-1.5 sm:gap-2"><span class="text-[8px] sm:text-[9px] text-ghost-faint track-num w-3 sm:w-4">10</span><span class="text-[8px] sm:text-[9px] text-ghost/35 truncate">The True Anchor</span></div>
+                </div>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent"></div>
+            </div>
+            <div class="p-4 sm:p-6 flex-grow flex flex-col">
+              <h3 class="font-cinzel text-sm sm:text-base tracking-wide text-steel mb-0.5">CD Digipak</h3>
+              <p class="text-[8px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ice/40 mb-2 sm:mb-3">10-Track Full Album</p>
+              <p class="text-[11px] sm:text-xs text-ghost-dim leading-relaxed font-light flex-grow">Premium digipak with the complete 10-track journey—from Overture to Nothingness to the final True Anchor.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Merch -->
+        <div class="snap-center flex-shrink-0 w-[75vw] sm:w-[280px] md:w-[320px] lg:w-[340px] reveal" style="transition-delay:0.4s">
+          <div class="border border-white/5 bg-charcoal/15 rounded-sm overflow-hidden group h-full flex flex-col">
+            <div class="relative aspect-square overflow-hidden bg-gradient-to-br from-void via-charcoal to-slate flex items-center justify-center flex-shrink-0">
+              <div class="text-center p-6 sm:p-8">
+                <iconify-icon icon="lucide:shirt" width="40" class="text-ember/15 mb-2 sm:mb-3"></iconify-icon>
+                <p class="font-cinzel text-xs sm:text-sm text-ghost/30 tracking-wider mb-3 sm:mb-4">Official Merchandise</p>
+                <div class="flex justify-center gap-5 sm:gap-6 text-ghost/25">
+                  <div class="text-center"><iconify-icon icon="lucide:shield-check" width="16" class="mb-0.5 sm:mb-1"></iconify-icon><p class="text-[7px] sm:text-[8px] tracking-wider uppercase">Patch</p></div>
+                  <div class="text-center"><iconify-icon icon="lucide:guitar" width="16" class="mb-0.5 sm:mb-1"></iconify-icon><p class="text-[7px] sm:text-[8px] tracking-wider uppercase">Picks</p></div>
+                  <div class="text-center"><iconify-icon icon="lucide:tag" width="16" class="mb-0.5 sm:mb-1"></iconify-icon><p class="text-[7px] sm:text-[8px] tracking-wider uppercase">T-Shirt</p></div>
+                </div>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 text-[7px] sm:text-[8px] tracking-[0.15em] sm:tracking-[0.2em] uppercase bg-void/60 backdrop-blur-sm text-ghost px-2 sm:px-3 py-0.5 sm:py-1 rounded-sm border border-white/5">Apparel & Gear</span>
+            </div>
+            <div class="p-4 sm:p-6 flex-grow flex flex-col">
+              <h3 class="font-cinzel text-sm sm:text-base tracking-wide text-steel mb-0.5">Merchandise Line</h3>
+              <p class="text-[8px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ember/40 mb-2 sm:mb-3">STAR Patches · Picks · T-Shirt</p>
+              <p class="text-[11px] sm:text-xs text-ghost-dim leading-relaxed font-light flex-grow">Embroidered STAR acronym patches, custom guitar picks, and the official project T-shirt—wear the signal.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flex items-center justify-center gap-2 mt-4 md:hidden" aria-hidden="true">
+        <iconify-icon icon="lucide:move-horizontal" width="13" class="text-ghost-faint swipe-hint-icon"></iconify-icon>
+        <span class="text-[8px] tracking-[0.2em] uppercase text-ghost-faint">Swipe to explore</span>
+      </div>
+      <div class="hidden md:flex items-center justify-center gap-2 mt-4" aria-hidden="true">
+        <iconify-icon icon="lucide:arrow-right" width="13" class="text-ghost-faint"></iconify-icon>
+        <span class="text-[8px] tracking-[0.2em] uppercase text-ghost-faint">Scroll to explore</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider max-w-4xl mx-auto" aria-hidden="true"></div>
+
+  <!-- ==================== THE AWAKENING ==================== -->
+  <section id="awakening" class="relative min-h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden" aria-label="The Awakening — Pre-Save and Slogan">
+    <!-- Background — Eye Contact Soldier for climactic confrontation -->
+    <div class="awakening-bg absolute inset-0 z-0 img-fallback">
+      <img src="https://raw.githubusercontent.com/northstarrisingofficial-cell/FIC/refs/heads/main/Promo_Vertical_EyeContactSoldier.png"
+           alt="" role="presentation" class="w-full h-full object-cover object-[center_20%] scale-105"
+           loading="lazy"
+           onload="this.parentElement.classList.add('loaded')"
+           onerror="this.style.display='none'">
+    </div>
+    <div class="absolute inset-0 z-[1] bg-void/55" aria-hidden="true"></div>
+    <div class="absolute inset-0 z-[1]" style="background:radial-gradient(ellipse at center, rgba(6,6,11,0.45) 15%, rgba(6,6,11,0.8) 65%, rgba(6,6,11,0.95) 100%)" aria-hidden="true"></div>
+    <!-- Atmospheric glows -->
+    <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full" style="background:radial-gradient(circle,rgba(255,77,0,0.04) 0%,transparent 70%)"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full" style="background:radial-gradient(circle,rgba(74,144,217,0.03) 0%,transparent 70%)"></div>
+    </div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-5 md:px-12 text-center py-20 md:py-24">
+
+      <!-- Slogan — the project's thesis statement, given solo prominence here -->
+      <div class="reveal mb-10 sm:mb-12 md:mb-14">
+        <div class="w-12 h-px bg-gradient-to-r from-transparent via-ember/35 to-transparent mx-auto mb-6 sm:mb-8" aria-hidden="true"></div>
+        <p class="font-cormorant italic text-base sm:text-lg md:text-2xl lg:text-[28px] text-steel/85 leading-relaxed px-2">
+          "The north does not belong to the brightest star.<br>
+          It belongs to the one that <span class="text-ember">knows the way</span>."
+        </p>
+        <div class="w-12 h-px bg-gradient-to-r from-transparent via-ember/35 to-transparent mx-auto mt-6 sm:mt-8" aria-hidden="true"></div>
+      </div>
+
+      <!-- Countdown (large format — pairs with the CTA) -->
+      <div class="reveal mb-10 sm:mb-12 md:mb-14" style="transition-delay:0.15s">
+        <p class="text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] uppercase text-ghost-faint mb-5 sm:mb-6">The Awakening — May 15, 2026</p>
+        <div id="countdown" class="flex justify-center gap-3 sm:gap-4 md:gap-6" role="timer" aria-label="Countdown to release day">
+          <div class="text-center">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 border border-white/8 bg-charcoal/50 backdrop-blur-sm rounded-sm flex items-center justify-center mb-1.5 sm:mb-2">
+              <span id="days" class="font-cinzel text-xl sm:text-2xl md:text-3xl text-steel">---</span>
+            </div>
+            <span class="text-[7px] sm:text-[8px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ghost-faint">Days</span>
+          </div>
+          <div class="text-center">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 border border-white/8 bg-charcoal/50 backdrop-blur-sm rounded-sm flex items-center justify-center mb-1.5 sm:mb-2">
+              <span id="hours" class="font-cinzel text-xl sm:text-2xl md:text-3xl text-steel">--</span>
+            </div>
+            <span class="text-[7px] sm:text-[8px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ghost-faint">Hours</span>
+          </div>
+          <div class="text-center">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 border border-white/8 bg-charcoal/50 backdrop-blur-sm rounded-sm flex items-center justify-center mb-1.5 sm:mb-2">
+              <span id="minutes" class="font-cinzel text-xl sm:text-2xl md:text-3xl text-steel">--</span>
+            </div>
+            <span class="text-[7px] sm:text-[8px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ghost-faint">Mins</span>
+          </div>
+          <div class="text-center">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 border border-ember/12 bg-charcoal/50 backdrop-blur-sm rounded-sm flex items-center justify-center mb-1.5 sm:mb-2">
+              <span id="seconds" class="seconds-pulse font-cinzel text-xl sm:text-2xl md:text-3xl text-ember">--</span>
+            </div>
+            <span class="text-[7px] sm:text-[8px] tracking-[0.2em] sm:tracking-[0.25em] uppercase text-ghost-faint">Secs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pre-Save -->
+      <div class="reveal mb-10 sm:mb-12 md:mb-14" style="transition-delay:0.3s">
+        <a href="#" id="presaveBtn" class="cta-locked inline-flex items-center gap-2.5 sm:gap-3 bg-ember/80 text-white/90 font-cinzel text-xs sm:text-sm md:text-base tracking-[0.1em] sm:tracking-[0.15em] uppercase px-7 sm:px-10 py-3.5 sm:py-4 md:px-14 md:py-5 rounded-sm transition-all duration-300" role="button" aria-disabled="true" aria-label="Pre-save on Spotify — available May 8, 2026">
+          <iconify-icon icon="lucide:lock" width="16" id="presaveIcon"></iconify-icon>
+          <span id="presaveText">Available May 8</span>
+        </a>
+        <p class="text-[8px] sm:text-[9px] text-ghost-faint mt-2.5 tracking-wider">Spotify Pre-Save activates one week before release</p>
+      </div>
+
+      <!-- Final Statement -->
+      <div class="reveal" style="transition-delay:0.45s">
+        <div class="max-w-xl mx-auto border border-white/5 bg-charcoal/30 backdrop-blur-sm rounded-sm p-6 sm:p-8 md:p-10">
+          <p class="font-cormorant italic text-sm sm:text-base md:text-lg text-steel/65 leading-relaxed">
+            "Scientific truth <span class="text-ice-light/75">(1)</span> dressed in human relevance <span class="text-ember/75">(2)</span> and hidden behind an enigmatic mystery <span class="text-purple-300/75">(3)</span> — to satisfy the search for the inexplicable with the miracle of reality."
+          </p>
+          <div class="flex justify-center gap-4 sm:gap-6 mt-5 sm:mt-6">
+            <div class="flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-ice/35" aria-hidden="true"></div><span class="text-[7px] sm:text-[8px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ghost-faint">Science</span></div>
+            <div class="flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-ember/35" aria-hidden="true"></div><span class="text-[7px] sm:text-[8px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ghost-faint">Human</span></div>
+            <div class="flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-purple-400/35" aria-hidden="true"></div><span class="text-[7px] sm:text-[8px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ghost-faint">Mystery</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="border-t border-white/5 py-10 md:py-12" role="contentinfo">
+    <div class="max-w-6xl mx-auto px-5 md:px-12">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+        <div class="text-center sm:text-left">
+          <p class="font-cinzel text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] text-steel/50 mb-0.5">North Star Rising</p>
+          <p class="text-[8px] sm:text-[9px] tracking-[0.12em] sm:tracking-[0.15em] uppercase text-ghost-faint">Frozen in Carbide — 2026</p>
+        </div>
+        <div class="flex items-center gap-5">
+          <a href="#" class="text-ghost-faint hover:text-ice-light transition-colors duration-300 w-9 h-9 flex items-center justify-center" aria-label="Instagram"><iconify-icon icon="lucide:instagram" width="16"></iconify-icon></a>
+          <a href="#" class="text-ghost-faint hover:text-ice-light transition-colors duration-300 w-9 h-9 flex items-center justify-center" aria-label="YouTube"><iconify-icon icon="lucide:youtube" width="16"></iconify-icon></a>
+          <a href="#" class="text-ghost-faint hover:text-ember transition-colors duration-300 w-9 h-9 flex items-center justify-center" aria-label="Spotify"><iconify-icon icon="lucide:music" width="16"></iconify-icon></a>
+        </div>
+        <p class="text-[7px] sm:text-[8px] text-ghost-faint/60 tracking-wider uppercase text-center sm:text-right">© 2025 North Star Rising. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script>
+    (function() {
+      'use strict';
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ---- Star field ----
+      if (!prefersReduced) {
+        const field = document.getElementById('starField');
+        const count = window.innerWidth < 640 ? 65 : window.innerWidth < 1024 ? 100 : 130;
+        for (let i = 0; i < count; i++) {
+          const s = document.createElement('div');
+          s.classList.add('star');
+          const size = Math.random() * 1.5 + 0.4;
+          s.style.cssText = 'width:'+size+'px;height:'+size+'px;top:'+Math.random()*100+'%;left:'+Math.random()*100+'%;--min-o:'+(Math.random()*0.12+0.05).toFixed(2)+';--max-o:'+(Math.random()*0.4+0.25).toFixed(2)+';--dur:'+(Math.random()*4+2).toFixed(1)+'s;animation-delay:'+(Math.random()*5).toFixed(1)+'s;';
+          field.appendChild(s);
+        }
+      }
+
+      // ---- Countdown — updates both hero and awakening displays ----
+      const target = new Date('2026-05-15T00:00:00Z').getTime();
+      const pad = n => n.toString().padStart(2, '0');
+
+      // Awakening elements
+      const elD = document.getElementById('days');
+      const elH = document.getElementById('hours');
+      const elM = document.getElementById('minutes');
+      const elS = document.getElementById('seconds');
+      // Hero elements
+      const elHD = document.getElementById('hero-days');
+      const elHH = document.getElementById('hero-hours');
+      const elHM = document.getElementById('hero-minutes');
+      const elHS = document.getElementById('hero-seconds');
+
+      function tick() {
+        const diff = Math.max(0, target - Date.now());
+        const d = pad(Math.floor(diff / 864e5));
+        const h = pad(Math.floor((diff % 864e5) / 36e5));
+        const m = pad(Math.floor((diff % 36e5) / 6e4));
+        const s = pad(Math.floor((diff % 6e4) / 1e3));
+        // Awakening
+        elD.textContent = d; elH.textContent = h; elM.textContent = m; elS.textContent = s;
+        // Hero
+        elHD.textContent = d; elHH.textContent = h; elHM.textContent = m; elHS.textContent = s;
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      // ---- Pre-Save button ----
+      const presaveBtn = document.getElementById('presaveBtn');
+      const presaveText = document.getElementById('presaveText');
+      const presaveIcon = document.getElementById('presaveIcon');
+      const activation = new Date('2026-05-08T00:00:00Z').getTime();
+
+      function blockClick(e) { e.preventDefault(); }
+      presaveBtn.addEventListener('click', blockClick);
+
+      function activatePresave() {
+        presaveBtn.removeEventListener('click', blockClick);
+        presaveBtn.classList.remove('cta-locked');
+        presaveBtn.classList.add('cta-pulse', 'hover:bg-ember-deep');
+        presaveBtn.setAttribute('aria-disabled', 'false');
+        presaveBtn.setAttribute('aria-label', 'Pre-save on Spotify');
+        presaveIcon.setAttribute('icon', 'lucide:circle-dot');
+        presaveText.textContent = 'Spotify Pre-Save';
+        presaveBtn.classList.remove('text-white/90');
+        presaveBtn.classList.add('text-white');
+      }
+      if (Date.now() >= activation) {
+        activatePresave();
+      } else {
+        var presaveInterval = setInterval(function() {
+          if (Date.now() >= activation) {
+            activatePresave();
+            clearInterval(presaveInterval);
+          }
+        }, 30000);
+      }
+
+      // ---- Scroll reveal ----
+      const revealObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('active');
+            var arc = e.target.querySelector('.precession-arc');
+            if (arc) arc.classList.add('animate');
+            if (e.target.closest('#vagabond')) {
+              document.querySelectorAll('.precession-arc').forEach(function(a) { a.classList.add('animate'); });
+            }
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el) { revealObs.observe(el); });
+
+      // ---- Active nav tracking ----
+      var navLinks = document.querySelectorAll('.nav-section-link');
+      var mobileLinks = document.querySelectorAll('.nav-section-link-mobile');
+      var navObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            var id = e.target.id;
+            navLinks.forEach(function(l) { l.classList.toggle('nav-link-active', l.dataset.section === id); });
+            mobileLinks.forEach(function(l) { l.classList.toggle('nav-link-active', l.dataset.section === id); });
+          }
+        });
+      }, { threshold: 0.2, rootMargin: '-80px 0px -35% 0px' });
+      ['triad','vagabond','architects','vault','awakening'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) navObs.observe(el);
+      });
+
+      // ---- Nav background ----
+      var nav = document.getElementById('mainNav');
+      function updateNav() {
+        if (window.scrollY > 60) {
+          nav.style.background = window.innerWidth < 768 ? 'rgba(6,6,11,0.93)' : 'rgba(6,6,11,0.82)';
+          nav.style.backdropFilter = window.innerWidth < 768 ? 'none' : 'blur(14px)';
+          nav.style.borderBottom = '1px solid rgba(255,255,255,0.03)';
+        } else {
+          nav.style.background = 'transparent';
+          nav.style.backdropFilter = 'none';
+          nav.style.borderBottom = 'none';
+        }
+      }
+      window.addEventListener('scroll', updateNav, { passive: true });
+      window.addEventListener('resize', updateNav, { passive: true });
+      updateNav();
+
+      // ---- Mobile menu ----
+      var menuBtn = document.getElementById('mobileMenuBtn');
+      var mobileMenu = document.getElementById('mobileMenu');
+      var iconOpen = document.getElementById('menuIconOpen');
+      var iconClose = document.getElementById('menuIconClose');
+      var menuOpen = false;
+
+      function toggleMenu() {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle('open', menuOpen);
+        iconOpen.classList.toggle('hidden', menuOpen);
+        iconClose.classList.toggle('hidden', !menuOpen);
+        menuBtn.setAttribute('aria-expanded', menuOpen.toString());
+        if (!menuOpen) menuBtn.focus();
+      }
+      menuBtn.addEventListener('click', toggleMenu);
+      mobileMenu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() { if (menuOpen) toggleMenu(); });
+      });
+
+      // ---- Hero parallax (subtle, only on the texture layer) ----
+      if (!prefersReduced) {
+        var heroTexture = document.querySelector('#hero > .absolute.inset-0.z-0');
+        var heroEl = document.getElementById('hero');
+        if (heroTexture && heroEl) {
+          var ticking = false;
+          window.addEventListener('scroll', function() {
+            if (!ticking) {
+              requestAnimationFrame(function() {
+                var y = window.scrollY;
+                if (y < heroEl.offsetHeight) heroTexture.style.transform = 'scale(1.1) translateY(' + (y * 0.08) + 'px)';
+                ticking = false;
+              });
+              ticking = true;
+            }
+          }, { passive: true });
+        }
+      }
+
+      // ---- Pillar interaction ----
+      var allPillars = document.querySelectorAll('.pillar-card');
+      allPillars.forEach(function(card) {
+        card.addEventListener('touchend', function(e) {
+          e.preventDefault();
+          var wasTouched = card.classList.contains('touched');
+          allPillars.forEach(function(p) {
+            p.classList.remove('touched');
+            p.setAttribute('aria-expanded', 'false');
+          });
+          if (!wasTouched) {
+            card.classList.add('touched');
+            card.setAttribute('aria-expanded', 'true');
+          }
+        });
+        card.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            var wasTouched = card.classList.contains('touched');
+            allPillars.forEach(function(p) {
+              p.classList.remove('touched');
+              p.setAttribute('aria-expanded', 'false');
+            });
+            if (!wasTouched) {
+              card.classList.add('touched');
+              card.setAttribute('aria-expanded', 'true');
+            }
+          }
+        });
+        card.addEventListener('click', function(e) {
+          if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            e.preventDefault();
+          }
+        });
+      });
+
+      // ---- Set pillar hint labels based on input method ----
+      var hasCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+      document.querySelectorAll('.pillar-hint-label').forEach(function(label) {
+        label.textContent = hasCoarsePointer ? 'Tap to reveal' : 'Hover to reveal';
+      });
+      window.matchMedia('(pointer: coarse)').addEventListener('change', function(e) {
+        document.querySelectorAll('.pillar-hint-label').forEach(function(label) {
+          label.textContent = e.matches ? 'Tap to reveal' : 'Hover to reveal';
+        });
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
